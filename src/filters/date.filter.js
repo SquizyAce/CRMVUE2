@@ -17,4 +17,4 @@ export default function dateFilter(value, format) { // создания функ
 
     return new Intl.DateTimeFormat('ru-RU', options).format(new Date(value))
 
-}
+} 
