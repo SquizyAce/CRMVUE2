@@ -11,7 +11,7 @@ const router = new VueRouter({
     {                    // роуты к сайтам
       path: '/',
       name: 'Home',
-      meta: {layout: 'main', auth: true},
+      meta: {layout: 'main', auth: true, main: true},
       component: () => import('@/views/Home.vue')
     },
     {
@@ -45,9 +45,9 @@ const router = new VueRouter({
       component: () => import('@/views/Rate.vue')
     },
     {
-      path: '/home/:apartamentId',
+      path: '/home/:apartamentId/:year',
       name: 'Apartament',
-      meta: {layout: 'main', auth: true},
+      meta: {layout: 'main', auth: true, main: true},
       component: () => import('@/views/Apartament.vue')
     },
        

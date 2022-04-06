@@ -15,6 +15,10 @@ export default function dateFilter(value, format) { // создания функ
         options.year = 'numeric'
     }
 
+    if(format.includes('fetchYear')) {
+        options.year = 'numeric'
+    }
+
     return new Intl.DateTimeFormat('ru-RU', options).format(new Date(value))
 
 } 

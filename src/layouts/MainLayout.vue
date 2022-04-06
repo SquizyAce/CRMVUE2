@@ -5,11 +5,12 @@
 
    <Sidebar/>
 
-    <main class="app-content full">
+    <main :class="mContent">
     <div class="app-page">
         <router-view />
     </div>
-</main>
+    </main>
+    
  </div>
 </template>
 
@@ -30,6 +31,15 @@ export default {
   computed: {
         error(){
             return this.$store.getters.error
+        },
+        mContent(){
+          console.log(this.$route.meta)
+          if (this.$route.meta.main) { 
+          return ("") 
+          }
+          else { 
+          return ("app-content full")
+          }
         }
     },
     watch: {

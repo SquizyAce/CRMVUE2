@@ -1,16 +1,16 @@
 <template>
-<Loader v-if="loading"/>
-   <div v-else class="row">
-    <div class="col s2" v-for="apartament in apartaments" :key="apartament.id">
+   <div  class="row">
+    <Loader v-if="loading"/>
+    <div v-else class="col s2" v-for="apartament in apartaments" :key="apartament.id">
       <div class="card blue-grey darken-1">
         <div class="card-content white-text">
-          <span class="card-title">{{apartament.name}}</span>
-          <p>Квартплата: {{apartament.apprice}} рублей</p>
-          <p>Адрес: {{apartament.adr}}</p>
+          <span class="card-title">{{apartament.info.name}}</span>
+          <p>Квартплата: {{apartament.info.apprice}} рублей</p>
+          <p>Адрес: {{apartament.info.adr}}</p>
         </div>
         <div class="card-action">
           <a href="#"><router-link 
-                  :to="{ path: `/home/${apartament.id}` }"
+                  :to="{ path: `/home/${apartament.id}/${year}/` }"
                   >Открыть</router-link
                 ></a>
           <a href="#" @click="deleteApartament(apartament.id)">Удалить</a>
@@ -20,7 +20,6 @@
     <div class="fixed-action-btn">
         <a data-target="modal1" class="btn-floating btn-large blue btn modal-trigger"><i class="large material-icons">add</i></a>
     </div>
-
   <div id="modal1" class="modal">
     <div class="modal-content">
       <h5>Добавление недвижимости</h5>
@@ -76,6 +75,7 @@
 
 <script>
 import M from 'materialize-css'
+import dateFilter from '@/filters/date.filter'
 import { required, numeric } from 'vuelidate/lib/validators'
 export default {
   name: 'home',
@@ -86,6 +86,7 @@ export default {
        adr: '',
        apprice: null,
        loading: true,
+       year: dateFilter(new Date, 'fetchYear')
   }),
   validations: {
     name: {required},

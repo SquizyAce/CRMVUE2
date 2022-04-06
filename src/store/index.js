@@ -4,6 +4,7 @@ import auth from './modules/auth'
 import info from './modules/info'
 import tenant from './modules/tenant'
 import rates from './modules/rates'
+import bills from './modules/bills'
 import apartaments from './modules/apartaments'
 
 
@@ -27,6 +28,6 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
-    auth, info, tenant, rates, apartaments
+    auth, info, tenant, rates, apartaments, bills
   }
 })

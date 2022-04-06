@@ -33,7 +33,7 @@ export default{
                 //     return;
                 //   }
                 const id = crypto.randomUUID(name)
-                await firebase.database().ref(`/apartaments/${id}`).set({
+                await firebase.database().ref(`/apartaments/${id}/info`).set({
                     name: name,
                     adr: adr,
                     apprice: apprice,
