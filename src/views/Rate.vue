@@ -3,7 +3,7 @@
    <Loader v-if="loading"/>
     <div v-else class="container">
       <div class="row">
-        <div class="col s6 offset-s3">
+        <div class="col s8 offset-s2">
          <form>
           <div class="card blue darken-1">
            <div class="card-content white-text">
@@ -13,6 +13,7 @@
                 <th>Услуга</th>
                 <th>Тариф</th>
                 <th>Система счисления</th> 
+                <th>Тип системы счисления</th> 
               </tr>  
             </thead>
             <tbody>
@@ -21,7 +22,8 @@
                 <input
                   id="price" type="text" class="white-text" autocomplete="off"
                   v-model.trim="rate.price" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; ">
-                <td>{{rate.ns}}</td>  
+                <td>{{rate.ns}}</td>
+                <td><input type="checkbox" v-model.trim="rate.nstype"/><span>Человек - место</span></td>  
               </tr>               
             </tbody>
           </table>
