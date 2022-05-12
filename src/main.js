@@ -10,12 +10,14 @@ import dateFilter from '@/filters/date.filter'
 import messagePlugin from '@/tools/message.plugin'
 import Loader from '@/components/app/Loader'
 import firebase from 'firebase/app'
+import Crypto from 'crypto'
 import 'firebase/auth'
 import 'firebase/database'
 
 
 Vue.config.productionTip = false
 Vue.use(Vuelidate)
+Vue.use(Crypto)
 Vue.use(VueCompositionAPI)
 Vue.use(messagePlugin)
 Vue.filter('date', dateFilter)

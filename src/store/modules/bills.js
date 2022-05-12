@@ -4,13 +4,18 @@ export default{
         async fetchBill({dispatch, commit}, {year, apartamentId}){
             try{
             const billCheck = (await firebase.database().ref(`/apartaments/${apartamentId}/${year}`).once('value')).val()
-            if (!billCheck)
+            const billCheck2 = (await firebase.database().ref(`/apartaments/${apartamentId}`).once('value')).val()
+            if (!billCheck && billCheck2)
             {
                 let billData = {}
                 const rates = await dispatch('fetchRates')
                 const months = {0:0,1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0,10:0,11:0}
+                const calcs = {0: {value: 0, total: 0},1:{value: 0, total: 0},2:{value: 0, total: 0},
+                                3:{value: 0, total: 0},4:{value: 0, total: 0},5:{value: 0, total: 0},
+                                6:{value: 0, total: 0},7:{value: 0, total: 0},8:{value: 0, total: 0},
+                                9:{value: 0, total: 0},10:{value: 0, total: 0},11:{value: 0, total: 0}}
                 for (const [key, value] of Object.entries(rates)) {
-                    billData[value.name] = months
+                    billData[value.name] = calcs
                   }
                 console.log(billData)  
                 await firebase.database().ref(`/apartaments/${apartamentId}/${year}/calculation`).set(billData) 
@@ -22,8 +27,9 @@ export default{
             return bill
             }
             catch (e) {
+            e.code = 'ApartamentMiss'
             commit('setError', e) 
-                throw e 
+            throw e 
             }
         },
         async lastBill({dispatch, commit}, {year, apartamentId}){

@@ -1,7 +1,7 @@
 <template>
  <form class="card auth-card" @submit.prevent="onSubmit"> <!-- приминение функции onSubmit на закрытие формы -->
     <div class="card-content">
-    <span class="card-title">Домашняя бухгалтерия</span>
+    <span class="card-title">Бугалтерия учёта</span>
     <div class="input-field">
       <input
           id="email"
@@ -48,10 +48,10 @@
       </button>
     </div>
 
-    <p class="center">
+    <!-- <p class="center">
       Нет аккаунта?
       <router-link to="/register">Зарегистрироваться</router-link>
-    </p>
+    </p> -->
   </div>
 </form>
 </template>

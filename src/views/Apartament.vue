@@ -24,73 +24,77 @@
           <td><input
                   @blur="count(0)"
                   id="price" type="text" class="black-text" autocomplete="off"
-                  v-model.trim="service[0]" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; ">
+                  v-model.trim="service[0].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[0].total.toFixed(2)}}&#8381;</label>
           </td>
           <td><input
                   @blur="count(1)"
                   id="price" type="text" class="black-text" autocomplete="off"
-                  v-model.trim="service[1]" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; ">
+                  v-model.trim="service[1].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[1].total.toFixed(2)}}&#8381;</label>
           </td>
           <td><input
                   @blur="count(2)"
                   id="price" type="text" class="black-text" autocomplete="off"
-                  v-model.trim="service[2]" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; ">
+                  v-model.trim="service[2].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[2].total.toFixed(2)}}&#8381;</label>
           </td>
           <td><input
                   @blur="count(3)"
                   id="price" type="text" class="black-text" autocomplete="off"
-                  v-model.trim="service[3]" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; ">
+                  v-model.trim="service[3].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[3].total.toFixed(2)}}&#8381;</label>
          </td>
           <td><input
                   @blur="count(4)"
                   id="price" type="text" class="black-text" autocomplete="off"
-                  v-model.trim="service[4]" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; ">
+                  v-model.trim="service[4].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[4].total.toFixed(2)}}&#8381;</label>
           </td>
           <td><input
                   @blur="count(5)"
                   id="price" type="text" class="black-text" autocomplete="off"
-                  v-model.trim="service[5]" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; ">
+                  v-model.trim="service[5].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[5].total.toFixed(2)}}&#8381;</label>
           </td>
           <td><input
                   @blur="count(6)"
                   id="price" type="text" class="black-text" autocomplete="off"
-                  v-model.trim="service[6]" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; ">
+                  v-model.trim="service[6].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[6].total.toFixed(2)}}&#8381;</label>
          </td>
           <td><input
                   @blur="count(7)"
                   id="price" type="text" class="black-text" autocomplete="off"
-                  v-model.trim="service[7]" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; ">
+                  v-model.trim="service[7].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[7].total.toFixed(2)}}&#8381;</label>
           </td>
           <td><input
                   @blur="count(8)"
                   id="price" type="text" class="black-text" autocomplete="off"
-                  v-model.trim="service[8]" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; ">
+                  v-model.trim="service[8].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[8].total.toFixed(2)}}&#8381;</label>
           </td>
           <td><input
                   @blur="count(9)"
                   id="price" type="text" class="black-text" autocomplete="off"
-                  v-model.trim="service[9]" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; ">
+                  v-model.trim="service[9].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[9].total.toFixed(2)}}&#8381;</label>
           </td>
           <td><input
                   @blur="count(10)"
                   id="price" type="text" class="black-text" autocomplete="off"
-                  v-model.trim="service[10]" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; ">
+                  v-model.trim="service[10].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[10].total.toFixed(2)}}&#8381;</label>
          </td>
           <td><input
                   @blur="count(11)"
                   id="price" type="text" class="black-text" autocomplete="off"
-                  v-model.trim="service[11]" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; ">
+                  v-model.trim="service[11].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[11].total.toFixed(2)}}&#8381;</label>
          </td>
         </tr>
         <tr style="font-weight: bold">
           <td>Итоговая сумма</td>
-          <td v-for="payment in payments" :key="payment.id">{{payment}}</td>
+          <td v-for="payment in payments" :key="payment.id">{{payment.toFixed(2)}}&#8381;</td>
           <td></td>
         </tr>
       </tbody>
     </table>
   </div>
+  
   <a href="" @click.prevent="onSubmit()" class="waves-effect waves-light btn white-text green right">Сохранить</a>
+  <a class="waves-effect waves-light btn white-text green right">Отчёт</a>
+  <router-link to="/"  class="waves-effect waves-light btn white-text green right">Обратно</router-link>
+
 </div>
 </template>
 
@@ -126,7 +130,7 @@ export default {
       this.payments = await this.$store.dispatch('fetchPayment', formData)
       this.rates = await this.$store.dispatch('fetchRates')
       this.loading = false
-      console.log(this.lastYearBill)
+      console.log(this.bill)
     },
     methods: {
       refresh(){
@@ -138,19 +142,30 @@ export default {
         let billForCount = Object.keys(this.bill).map(key => ({...this.bill[key], id: key})) 
         for (let service in billForCount)
         {
-          if (ratesForCount[service].nstype == true)
+
+
+          if (ratesForCount[service].nstype)
           {
-            this.payments[serviceId] = Number(this.payments[serviceId] + billForCount[service][serviceId] * ratesForCount[service].price)  
-          } else
+            this.payments[serviceId] = parseFloat(this.payments[serviceId] + billForCount[service][serviceId].value * ratesForCount[service].price)  
+            this.bill[billForCount[service].id][serviceId].total = parseFloat(billForCount[service][serviceId].value * ratesForCount[service].price)
+          } 
+
+
+
+          else
           {
             if (serviceId == 0)
             {
-              this.payments[serviceId] = Number(this.payments[serviceId] + (billForCount[service][serviceId] - this.lastYearBill[service]) * ratesForCount[service].price)
+              this.payments[serviceId] = parseFloat(this.payments[serviceId] + (billForCount[service][serviceId].value - this.lastYearBill[service]) * ratesForCount[service].price)
+              this.bill[billForCount[service].id][serviceId].total = parseFloat((billForCount[service][serviceId].value - this.lastYearBill[service]) * ratesForCount[service].price)
             } else 
             {
-              this.payments[serviceId] = Number(this.payments[serviceId] + (billForCount[service][serviceId] - billForCount[service][serviceId - 1]) * ratesForCount[service].price)
+              this.payments[serviceId] = parseFloat(this.payments[serviceId] + (billForCount[service][serviceId].value - billForCount[service][serviceId - 1].value) * ratesForCount[service].price)
+              this.bill[billForCount[service].id][serviceId].total = parseFloat((billForCount[service][serviceId].value - billForCount[service][serviceId - 1].value) * ratesForCount[service].price)
             }
           }
+
+
         }
       },
       async onSubmit() {
@@ -160,6 +175,7 @@ export default {
           billsCol: this.bill,
           paymentsCol: this.payments
         }
+        console.log(formData)
         await this.$store.dispatch('updateBills', formData)
       },
     }

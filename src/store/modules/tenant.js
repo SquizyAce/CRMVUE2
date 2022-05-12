@@ -1,4 +1,5 @@
 import firebase from "firebase/app"
+import { v4 as uuidv4 } from 'uuid';
 export default{
     actions: {
         async addTenant ({dispatch, commit}, {email, password, name, datereg}) {
@@ -24,7 +25,7 @@ export default{
                     alert('Такой email уже зарегистрирован');
                     return;
                   }
-                const id = crypto.randomUUID(password)
+                const id = uuidv4()
                 await firebase.database().ref(`/tenant/${id}`).set({
                     name: name,
                     email: email,

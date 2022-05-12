@@ -1,7 +1,7 @@
 <template>
    <div  class="row">
     <Loader v-if="loading"/>
-    <div v-else class="col s2" v-for="apartament in apartaments" :key="apartament.id">
+    <div v-else class="col s3" v-for="apartament in apartaments" :key="apartament.id">
       <div class="card blue-grey darken-1">
         <div class="card-content white-text">
           <span class="card-title">{{apartament.info.name}}</span>
@@ -11,9 +11,16 @@
         <div class="card-action">
           <a href="#"><router-link 
                   :to="{ path: `/home/${apartament.id}/${year}/` }"
-                  >Открыть</router-link
-                ></a>
-          <a href="#" @click="deleteApartament(apartament.id)">Удалить</a>
+                  >Открыть
+          </router-link></a>
+          <a href="#"><router-link 
+                  :to="{ path: `/home/${apartament.id}` }"
+                  >Изменить
+          </router-link></a>
+          <a href="#" data-target="modal2" class="modal-trigger" style="opacity:.8" 
+                @click="selectedAp = {name: apartament.info.name, adr: apartament.info.adr, apprice: apartament.info.apprice, apartamentId: apartament.id}"
+                  >Удалить</a
+                >
         </div>
       </div>
     </div>
@@ -69,7 +76,18 @@
     </div>
       <a href="#!" @click.prevent="addAp()" class="waves-effect waves-light btn white-text green col s12" style="border-radius: 0px;">Добавить</a>
   </div>
+  <div class="row">
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+      Вы точно хотите удалить следующею недвижимости:<br>
+      Название: {{selectedAp.name}}<br>
+      Квартплата: {{selectedAp.apprice}}<br>
+      Адрес: {{selectedAp.adr}}<br>
 
+    </div>
+      <a href="#!" @click="deleteApartament(selectedAp.apartamentId)" class="waves-effect waves-light btn white-text red col s12" style="border-radius: 0px;">Удалить</a>
+  </div>
+  </div>
   </div>
 </template>
 
@@ -81,6 +99,7 @@ export default {
   name: 'home',
   name: 'tenant',
   data: () => ({
+       selectedAp: {},
        apartaments: [],
        name: '',
        adr: '',
@@ -95,7 +114,6 @@ export default {
   },
   methods:{
     async deleteApartament(apartamentId) {
-      console.log(apartamentId)
       await this.$store.dispatch('deleteApartament', apartamentId)
       this.$router.go();
     },

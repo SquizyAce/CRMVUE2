@@ -45,6 +45,12 @@ const router = new VueRouter({
       component: () => import('@/views/Rate.vue')
     },
     {
+      path: '/home/:apartamentId',
+      name: 'Apartament',
+      meta: {layout: 'main', auth: true, main: true},
+      component: () => import('@/views/ApartamentEdit.vue')
+    },
+    {
       path: '/home/:apartamentId/:year',
       name: 'Apartament',
       meta: {layout: 'main', auth: true, main: true},
