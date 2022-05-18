@@ -21,7 +21,7 @@
       <tbody>
         <tr v-for="(service, index) in bill" :key="service.id">
           <td>{{index}}</td>
-          <td><input
+          <td><input 
                   @blur="count(0)"
                   id="price" type="text" class="black-text" autocomplete="off"
                   v-model.trim="service[0].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[0].total.toFixed(2)}}&#8381;</label>
@@ -142,19 +142,15 @@ export default {
         let billForCount = Object.keys(this.bill).map(key => ({...this.bill[key], id: key})) 
         for (let service in billForCount)
         {
+          switch (ratesForCount[service].nstype) {
+            case 'tariff':
+              this.payments[serviceId] = parseFloat(this.payments[serviceId] + billForCount[service][serviceId].value * ratesForCount[service].price);  
+              this.bill[billForCount[service].id][serviceId].total = parseFloat(billForCount[service][serviceId].value * ratesForCount[service].price);
+              break;
 
 
-          if (ratesForCount[service].nstype)
-          {
-            this.payments[serviceId] = parseFloat(this.payments[serviceId] + billForCount[service][serviceId].value * ratesForCount[service].price)  
-            this.bill[billForCount[service].id][serviceId].total = parseFloat(billForCount[service][serviceId].value * ratesForCount[service].price)
-          } 
-
-
-
-          else
-          {
-            if (serviceId == 0)
+            case 'consistent':
+              if (serviceId == 0)
             {
               this.payments[serviceId] = parseFloat(this.payments[serviceId] + (billForCount[service][serviceId].value - this.lastYearBill[service]) * ratesForCount[service].price)
               this.bill[billForCount[service].id][serviceId].total = parseFloat((billForCount[service][serviceId].value - this.lastYearBill[service]) * ratesForCount[service].price)
@@ -163,8 +159,23 @@ export default {
               this.payments[serviceId] = parseFloat(this.payments[serviceId] + (billForCount[service][serviceId].value - billForCount[service][serviceId - 1].value) * ratesForCount[service].price)
               this.bill[billForCount[service].id][serviceId].total = parseFloat((billForCount[service][serviceId].value - billForCount[service][serviceId - 1].value) * ratesForCount[service].price)
             }
-          }
+              break;
 
+
+            case 'math':
+              if (serviceId == 0)
+            {
+              this.bill[billForCount[service].id][serviceId].value = parseFloat((billForCount[2][serviceId].value - this.lastYearBill[2]) + (billForCount[6][serviceId].value - this.lastYearBill[6]))
+              this.payments[serviceId] = parseFloat(this.payments[serviceId] + ((billForCount[2][serviceId].value - this.lastYearBill[2]) + (billForCount[6][serviceId].value - this.lastYearBill[6])) * ratesForCount[service].price)
+              this.bill[billForCount[service].id][serviceId].total = parseFloat(((billForCount[2][serviceId].value - this.lastYearBill[2]) + (billForCount[6][serviceId].value - this.lastYearBill[6])) * ratesForCount[service].price)
+            } else 
+            {
+              this.bill[billForCount[service].id][serviceId].value = parseFloat((billForCount[2][serviceId].value - billForCount[2][serviceId - 1].value) + (billForCount[6][serviceId].value - billForCount[6][serviceId - 1].value))
+              this.payments[serviceId] = parseFloat(this.payments[serviceId] + ((billForCount[2][serviceId].value - billForCount[2][serviceId - 1].value) + (billForCount[6][serviceId].value - billForCount[6][serviceId - 1].value)) * ratesForCount[service].price)
+              this.bill[billForCount[service].id][serviceId].total = parseFloat(((billForCount[2][serviceId].value - billForCount[2][serviceId - 1].value) + (billForCount[6][serviceId].value - billForCount[6][serviceId - 1].value)) * ratesForCount[service].price)
+            }
+              break;    
+          }
 
         }
       },
