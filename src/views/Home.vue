@@ -105,7 +105,8 @@ export default {
        adr: '',
        apprice: null,
        loading: true,
-       year: dateFilter(new Date, 'fetchYear')
+       year: dateFilter(new Date, 'fetchYear'),
+       modal: null
   }),
   validations: {
     name: {required},
@@ -137,5 +138,10 @@ export default {
        console.log(this.apartaments)
        this.loading = false
    },
+   beforeDestroy(){
+     if (this.modal && this.modal.destroy) {
+       this.modal.destroy()
+     }
+   }
 }
 </script>

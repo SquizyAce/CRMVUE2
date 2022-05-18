@@ -126,6 +126,7 @@ export default {
     email: '',
     password: '',
     name: '',
+    modal: null,
   }),
   validations: {
     email: {email,required},
@@ -159,6 +160,11 @@ export default {
       await this.$store.dispatch('deleteTenant', userId)
       this.$router.go();
     },
-  }
+  },
+  beforeDestroy(){
+     if (this.modal && this.modal.destroy) {
+       this.modal.destroy()
+     }
+   }
 };
 </script>

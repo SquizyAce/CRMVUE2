@@ -11,7 +11,7 @@
     <li class="waves-effect"><a href="#!" @click.prevent="refresh()"><router-link :to="{ path: `/home/${apartamentId}/${year.next}` }"><i class="material-icons">chevron_right</i></router-link></a></li>
   </ul>
     </div>
-    <table>
+    <table class="billtable">
       <thead>
         <tr>
           <th>Услуга</th>
@@ -84,16 +84,18 @@
         </tr>
         <tr style="font-weight: bold">
           <td>Итоговая сумма</td>
-          <td v-for="payment in payments" :key="payment.id">{{payment.toFixed(2)}}&#8381;</td>
+          <td v-for="(payment, index) in payments" :key="payment.id">{{payment.toFixed(2)}}&#8381; <br><a @click.prevent="report(index)" style="cursor: pointer; font-weight: normal">Отчёт</a></td>
           <td></td>
         </tr>
       </tbody>
     </table>
   </div>
-  
-  <a href="" @click.prevent="onSubmit()" class="waves-effect waves-light btn white-text green right">Сохранить</a>
-  <a class="waves-effect waves-light btn white-text green right">Отчёт</a>
-  <router-link to="/"  class="waves-effect waves-light btn white-text green right">Обратно</router-link>
+
+<div class="center">
+<router-link to="/" class=" waves-effect waves-light btn white-text green ">Обратно</router-link>
+<a href="" @click.prevent="onSubmit()" class="waves-effect waves-light btn white-text green">Сохранить</a>
+</div>
+
 
 </div>
 </template>
@@ -112,7 +114,7 @@ export default {
       lastYearBill: [],
       payments: [],
       loading: true,
-      months: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
+      months: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
     }),
     created(){
       this.year.today = Number(this.$route.params.year);
@@ -130,7 +132,6 @@ export default {
       this.payments = await this.$store.dispatch('fetchPayment', formData)
       this.rates = await this.$store.dispatch('fetchRates')
       this.loading = false
-      console.log(this.bill)
     },
     methods: {
       refresh(){
@@ -189,6 +190,25 @@ export default {
         console.log(formData)
         await this.$store.dispatch('updateBills', formData)
       },
+      report(id){
+
+        let billForCount = Object.keys(this.bill).map(key => ({...this.bill[key], id: key})) 
+        let report = ''
+        for (let bill in billForCount)
+        {
+          let a = billForCount[bill].id + ': ' + billForCount[bill][id].total + " руб.\n"
+          report = report + a
+        }
+        report = report + "Итоговая сумма: " + this.payments[id] +" руб."
+        console.log(report)
+
+        navigator.clipboard.writeText(report)
+          .then(() => {
+          })
+          .catch(err => {
+            console.log('Something went wrong', err);
+          });
+      }
     }
 }
 </script>

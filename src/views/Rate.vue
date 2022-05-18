@@ -13,7 +13,6 @@
                 <th>Услуга</th>
                 <th>Тариф</th>
                 <th>Система счисления</th> 
-                <th>Тип системы счисления</th> 
               </tr>  
             </thead>
             <tbody>
@@ -23,7 +22,6 @@
                   id="price" type="text" class="white-text" autocomplete="off"
                   v-model.trim="rate.price" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; ">
                 <td>{{rate.ns}}</td>
-                <td><input type="checkbox" v-model.trim="rate.nstype"/><span>Человек - место</span></td>  
               </tr>               
             </tbody>
           </table>

@@ -47,7 +47,7 @@ export default{
                     bill = {}
                     for (let service in billForCount)
                     {
-                        bill[service] = billForCount[service][11]
+                        bill[service] = billForCount[service][11].value
                     }
                     return bill
                 } 

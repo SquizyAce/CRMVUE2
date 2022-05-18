@@ -1,7 +1,7 @@
 <template>
   <nav>
     <div class="nav-wrapper blue">
-      <a @click.prevent="$emit('click')"><i class="material-icons sidenav-trigger" data-target="slide-out">menu</i></a><a class="date right">{{date | date('datetime')}}</a>
+      <a @click.prevent="$emit('click')"><i style="cursor: pointer;" class="material-icons sidenav-trigger" data-target="slide-out">menu</i></a><a class="date right">{{date | date('datetime')}}</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li>
 
