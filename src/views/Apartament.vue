@@ -201,13 +201,13 @@ export default {
         }
         report = report + "Итоговая сумма: " + this.payments[id] +" руб."
         console.log(report)
-
-        navigator.clipboard.writeText(report)
-          .then(() => {
-          })
-          .catch(err => {
-            console.log('Something went wrong', err);
-          });
+        var copyhelper = document.createElement("textarea") // обход execCommand
+        copyhelper.className = 'copyhelper'
+        document.body.appendChild(copyhelper)
+        copyhelper.value = report
+        copyhelper.select()
+        document.execCommand("copy")
+        document.body.removeChild(copyhelper)
       }
     }
 }

@@ -2,7 +2,7 @@ import firebase from "firebase/app"
 import { v4 as uuidv4 } from 'uuid';
 export default{
     actions: {
-        async fetchApartaments({commit, dispatch}) {
+        async fetchApartaments({commit}) {
             try {
                 const Apartaments = (await firebase.database().ref(`/apartaments/`).once('value')).val() || {}
                 return Object.keys(Apartaments).map(key => ({...Apartaments[key], id: key})) 

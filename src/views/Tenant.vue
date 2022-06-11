@@ -13,6 +13,7 @@
               <th>Номер паспорта</th>
               <th>Email</th>
               <th>Дата регистрации</th>
+              <th>Квартира</th>
           </tr>
         </thead>
 
@@ -22,6 +23,7 @@
             <td>{{user.pasno}}</td>
             <td>{{user.email}}</td>
             <td>{{user.datereg}}</td>
+            <td>{{user.apartament}}</td>
             <td><span class="badge badge-primary badge-pill">
                 <router-link 
                   :to="{ path: `/tenant/${user.id}` }"
@@ -93,6 +95,14 @@
       >Введите корректный Email
       </small>
     </div>
+
+      <label>Квартира</label>
+      <select class="browser-default" v-model="currentApartamentId">
+        <option value="" disabled selected>Выбирите квартиру (необязательно)</option>
+        <option v-for="apartament in apartaments" :key="apartament.id" :value="apartament.id">{{apartament.info.name}}</option>
+        <option value="">Отсутсвует</option>
+      </select>
+
   <button class="btn waves-effect waves-light blue right" type="submit" name="action" style="opacity:.8">
     Добавить<i class="material-icons right">add</i>
   </button>
@@ -122,10 +132,12 @@ export default {
   data: () => ({
     selectedUser: {},
     users: [],
+    apartaments: [],
     loading: true,
     email: '',
     password: '',
     name: '',
+    currentApartamentId: "",
     modal: null,
   }),
   validations: {
@@ -136,6 +148,7 @@ export default {
   async mounted() {
     this.modal = M.Modal.init(document.querySelectorAll('.modal'))
     this.users = await this.$store.dispatch('fetchUsers')
+    this.apartaments = await this.$store.dispatch('fetchApartaments')
     this.loading = false
   },
   methods:{
@@ -148,9 +161,11 @@ export default {
         email: this.email,
         password: this.password,
         name: this.name,
-        datereg: dateFilter(new Date, 'datetime')
+        datereg: dateFilter(new Date, 'datetime'),
+        apartament: this.currentApartamentId
       }
       try{
+      console.log(formData)
       await this.$store.dispatch('addTenant', formData)
       this.$router.go();
       } catch(e){}

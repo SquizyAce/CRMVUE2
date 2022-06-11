@@ -57,6 +57,12 @@
                  >Введите корректный Email
                  </small>
             </div>
+            <label>Квартира</label>
+            <select class="browser-default" v-model="currentApartamentId">
+              <option value="" disabled selected>Выбирите квартиру (необязательно)</option>
+              <option v-for="apartament in apartaments" :key="apartament.id" :value="apartament.id">{{apartament.info.name}}</option>
+              <option value="">Отсутсвует</option>
+            </select>
             <router-link 
                   :to="'/tenant'"
                   class="btn waves-effect waves-light blue"
@@ -77,6 +83,8 @@ export default {
   data: () => ({
       userId: null,
       userInfo: [],
+      apartaments: [],
+      currentApartamentId: "",
   }),
   validations: {
     userInfo: {
@@ -97,7 +105,8 @@ export default {
         password: this.userInfo.pasno,
         name: this.userInfo.name,
         datereg: this.userInfo.datereg,
-        userId: this.userId
+        userId: this.userId,
+        apartament: this.currentApartamentId
       }
       try{
       await this.$store.dispatch('editTenant', formData)
@@ -111,6 +120,8 @@ export default {
   async mounted() {
     const userId = this.userId
     this.userInfo = await this.$store.dispatch('fetchUser', userId)
+    this.apartaments = await this.$store.dispatch('fetchApartaments')
+    this.currentApartamentId = this.userInfo.apartament
   }
 };
 </script>

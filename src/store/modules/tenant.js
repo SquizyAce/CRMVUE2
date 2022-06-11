@@ -2,7 +2,7 @@ import firebase from "firebase/app"
 import { v4 as uuidv4 } from 'uuid';
 export default{
     actions: {
-        async addTenant ({dispatch, commit}, {email, password, name, datereg}) {
+        async addTenant ({dispatch, commit}, {email, password, name, datereg, apartament}) {
             try{
                 let ErrorCode = 0
                 let users = []
@@ -30,20 +30,22 @@ export default{
                     name: name,
                     email: email,
                     pasno: password,
-                    datereg: datereg
+                    datereg: datereg,
+                    apartament: apartament
                 }) 
             } catch (e) {
                 commit('setError', e) // комит позволяет изменять state в store
                 throw e
             }
         },
-        async editTenant ({commit}, {email, password, name, datereg, userId}) {
+        async editTenant ({commit}, {email, password, name, datereg, userId, apartament}) {
             try{
                 await firebase.database().ref(`/tenant/${userId}`).set({
                     name: name,
                     email: email,
                     pasno: password,
-                    datereg: datereg
+                    datereg: datereg,
+                    apartament: apartament
                 }) 
             } catch (e) {
                 commit('setError', e) // комит позволяет изменять state в store
@@ -54,6 +56,11 @@ export default{
         async fetchUsers({commit}) {
             try {
                 const tenants = (await firebase.database().ref(`/tenant/`).once('value')).val() || {}
+                const apartaments = (await firebase.database().ref(`/apartaments/`).once('value')).val() || {}
+                for (const [key, value] of Object.entries(tenants)) {
+                    if (value.apartament != '') value.apartament = apartaments[value.apartament].info.name // перевод id в name
+                    else (value.apartament = 'Отсутствует')
+                  }
                 return Object.keys(tenants).map(key => ({...tenants[key], id: key})) // Object.keys - каждый проход получения ключа | .map - трансформация массива в новый по заданным параметрам
             } catch (e) {
                 commit('setError', e)
