@@ -6,7 +6,7 @@ export default { // создания кастомного плагина исп�
         }
         
         Vue.prototype.$error = function(html) {
-            M.toast({html: `[Ошибка]: ${html}`})
+            M.toast({html: `${html}`})
         }
     }
 }

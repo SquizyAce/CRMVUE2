@@ -46,12 +46,11 @@
         Войти
         <i class="material-icons right">send</i>
       </button>
+      <p class="center">
+      Вы квартирант? 
+      <router-link to="/bill">Войти!</router-link>
+    </p>
     </div>
-
-    <!-- <p class="center">
-      Нет аккаунта?
-      <router-link to="/register">Зарегистрироваться</router-link>
-    </p> -->
   </div>
 </form>
 </template>

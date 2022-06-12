@@ -17,7 +17,6 @@
         <a href="#" class="waves-effect waves-orange pointer"><i class="material-icons">{{link.icon}}</i>{{link.name}}</a>
       </router-link></li>
     <li><div class="divider"></div></li>
-    <li><router-link to="/profile" class="waves-effect"><i class="material-icons">account_circle</i>Профиль</router-link></li>
     <li><a @click.prevent="logout" class="waves-effect sidenav-close" href="#!"><i class="material-icons">assignment_return</i>Выйти</a></li>
   </ul>
 </template>

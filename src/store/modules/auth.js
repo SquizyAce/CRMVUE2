@@ -23,6 +23,10 @@ export default {
                 throw e
             }
         },
+        async getBill({dispatch, commit},pasno)
+        {
+            console.log(pasno)
+        },
         getUid(){
             const user = firebase.auth().currentUser // получения пользователя из бд
             return user ? user.uid : null
@@ -30,7 +34,6 @@ export default {
         async logout({commit}) {
             await firebase.auth().signOut()
             commit('clearInfo')
-            commit('clearUsers')
         }
     }
 }

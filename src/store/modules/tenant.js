@@ -25,7 +25,7 @@ export default{
                     alert('Такой email уже зарегистрирован');
                     return;
                   }
-                const id = uuidv4()
+                const id = password
                 await firebase.database().ref(`/tenant/${id}`).set({
                     name: name,
                     email: email,
