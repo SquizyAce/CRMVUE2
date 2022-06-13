@@ -83,7 +83,7 @@
          </td>
         </tr>
         <tr style="font-weight: bold">
-          <td>Итоговая сумма</td>
+          <td>Итоговая сумма с квартплатой</td>
           <td v-for="(payment, index) in payments" :key="payment.id">{{payment.toFixed(2)}}&#8381; <br><a @click.prevent="report(index)" style="cursor: pointer; font-weight: normal">Отчёт</a></td>
           <td></td>
         </tr>
@@ -99,8 +99,8 @@
 
 </div>
 </template>
-
 <script>
+import messages from "@/tools/messages"
 export default {
     data: () => ({ 
       year: {
@@ -115,6 +115,7 @@ export default {
       payments: [],
       loading: true,
       months: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
+      apprice: 0
     }),
     created(){
       this.year.today = Number(this.$route.params.year);
@@ -127,6 +128,7 @@ export default {
         year: this.year.today,
         apartamentId: this.apartamentId
       }
+      this.apprice = await this.$store.dispatch('fetchApprice', this.apartamentId)
       this.bill = await this.$store.dispatch('fetchBill', formData)
       this.lastYearBill = await this.$store.dispatch('lastBill', formData)
       this.payments = await this.$store.dispatch('fetchPayment', formData)
@@ -179,6 +181,8 @@ export default {
           }
 
         }
+        this.payments[serviceId] = this.payments[serviceId] + parseFloat(this.apprice)
+        console.log (this.payments[serviceId])
       },
       async onSubmit() {
         const formData = {
@@ -199,8 +203,7 @@ export default {
           let a = billForCount[bill].id + ': ' + billForCount[bill][id].total + " руб.\n"
           report = report + a
         }
-        report = report + "Итоговая сумма: " + this.payments[id] +" руб."
-        console.log(report)
+        report = report + "Квартплата: " + this.apprice + " руб.\nИтоговая сумма: " + this.payments[id] +" руб."
         var copyhelper = document.createElement("textarea") // обход execCommand
         copyhelper.className = 'copyhelper'
         document.body.appendChild(copyhelper)
@@ -208,6 +211,7 @@ export default {
         copyhelper.select()
         document.execCommand("copy")
         document.body.removeChild(copyhelper)
+        this.$message(messages['bfcopy'])
       }
     }
 }

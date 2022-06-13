@@ -27,6 +27,12 @@ const router = new VueRouter({
       component: () => import('@/views/Bill.vue')
     },
     {
+      path: '/bill/:apartamentId',
+      name: 'BillCheck',
+      meta: {layout: 'empty'},
+      component: () => import('@/views/BillCheck.vue')
+    },
+    {
       path: '/register',
       name: 'Register',
       meta: {layout: 'empty'},

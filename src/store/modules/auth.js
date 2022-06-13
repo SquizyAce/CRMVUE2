@@ -25,7 +25,9 @@ export default {
         },
         async getBill({dispatch, commit},pasno)
         {
-            console.log(pasno)
+            const ApartamentId = (await firebase.database().ref(`/tenant/${pasno}/apartament`).once('value')).val() || {}
+            console.log(ApartamentId)
+            return ApartamentId
         },
         getUid(){
             const user = firebase.auth().currentUser // получения пользователя из бд

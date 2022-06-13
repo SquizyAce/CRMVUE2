@@ -32,6 +32,10 @@
         <i class="material-icons right">send</i>
       </button>
     </div>
+    <p class="center">
+      Вы администратор? 
+      <router-link to="/login">Войти!</router-link>
+    </p>
 
   </div>
 </form>
@@ -60,6 +64,7 @@ export default {
     let pasno = this.pasno
     try{
     this.ApartamentId = await this.$store.dispatch('getBill', pasno)
+    this.$router.push(`/bill/${this.ApartamentId}`);
     } catch (e) {}
     }
   }

@@ -13,7 +13,6 @@ import MainLayout from '@/layouts/MainLayout'
 export default {
   computed: { // объект
     layout() { // свойство 
-      console.log(this.$route.meta)
       return (this.$route.meta.layout || 'empty') + '-layout' // возврат необходимого слоя для страницы из меты в роуте или при отсутсвие данных в мете возврат слоя empty 
     }                                                         // (-layout необходим для того, чтоб vue понял какое свойство в мете нам необходимо добавляя к мете слово Layout  )
   },

@@ -1,7 +1,36 @@
 import firebase from "firebase/app"
 import { v4 as uuidv4 } from 'uuid';
+import dateFilter from '@/filters/date.filter'
 export default{
     actions: {
+        async fetchApprice({commit}, apartamentId) {
+            try {
+                const apprice = (await firebase.database().ref(`/apartaments/${apartamentId}/info/apprice`).once('value')).val() || {}
+                return apprice
+            }
+            catch (e){
+                commit('setError', e)
+            }
+        },
+        async fetchCalculation({commit}, apartamentId) {
+            try {
+                const year = dateFilter(new Date, 'fetchYear')
+                // const month = parseInt(dateFilter(new Date, 'fetchMonth')) - 1
+                const bill = (await firebase.database().ref(`/apartaments/${apartamentId}/${year}`).once('value')).val() || {}
+                // for (const [key, value] of Object.entries(bill.payment)) {
+                //     if (key != month) delete bill.payment[key] 
+                // }
+                // for (const [key1, value] of Object.entries(bill.calculation)) {
+                //     for (const [key, value] of Object.entries(bill.calculation[key1])){
+                //         if (key != month) delete bill.calculation[key1][key]
+                //     }
+                // }
+                return bill
+            }
+            catch(e){
+                commit('setError', e)
+            }
+        },
         async fetchApartaments({commit}) {
             try {
                 const Apartaments = (await firebase.database().ref(`/apartaments/`).once('value')).val() || {}

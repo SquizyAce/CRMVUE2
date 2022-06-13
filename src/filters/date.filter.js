@@ -19,6 +19,16 @@ export default function dateFilter(value, format) { // создания функ
         options.year = 'numeric'
     }
 
+    if(format.includes('fetchMonth')) {
+        options.month = '2-digit'
+    }
+
+    if(format.includes('today')) {
+        options.day = 'numeric'
+        options.month = 'long'
+        options.year = 'numeric'
+    }
+
     return new Intl.DateTimeFormat('ru-RU', options).format(new Date(value))
 
 } 
