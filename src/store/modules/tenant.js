@@ -1,5 +1,4 @@
 import firebase from "firebase/app"
-import { v4 as uuidv4 } from 'uuid';
 export default{
     actions: {
         async addTenant ({dispatch, commit}, {email, password, name, datereg, apartament}) {
@@ -40,7 +39,30 @@ export default{
         },
         async editTenant ({commit}, {email, password, name, datereg, userId, apartament}) {
             try{
-                await firebase.database().ref(`/tenant/${userId}`).set({
+                let tenants = (await firebase.database().ref(`/tenant/`).once('value')).val() || {}
+                delete tenants[userId]
+                let ErrorCode = 0
+                for (const [key, value] of Object.entries(tenants))
+                {
+                    if (key == password)
+                    {
+                    ErrorCode = 1
+                    }
+                    else if (value.email == email)
+                    {
+                    ErrorCode = 2
+                    }
+                }
+                switch (ErrorCode){
+                    case(1):
+                    alert('Такой паспорт уже зарегистрирован');
+                    return;
+                    case(2):
+                    alert('Такой email уже зарегистрирован');
+                    return;
+                  }
+                await firebase.database().ref(`/tenant/${userId}`).remove()
+                await firebase.database().ref(`/tenant/${password}`).set({
                     name: name,
                     email: email,
                     pasno: password,
