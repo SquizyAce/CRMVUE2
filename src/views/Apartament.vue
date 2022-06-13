@@ -182,7 +182,6 @@ export default {
 
         }
         this.payments[serviceId] = this.payments[serviceId] + parseFloat(this.apprice)
-        console.log (this.payments[serviceId])
       },
       async onSubmit() {
         const formData = {

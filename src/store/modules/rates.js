@@ -1,13 +1,14 @@
 import firebase from "firebase/app"
 export default {
     actions: {
-        async addRate ({commit}, {name, ns, price}) {
+        async addRate ({commit}, {name, ns, price, nstype}) {
             try{
-                const id = crypto.randomUUID(name)
+                const id = name
                 await firebase.database().ref(`/rates/${id}`).set({
                     name: name,
                     ns: ns,
-                    price: price
+                    price: price,
+                    nstype: nstype
                 }) 
             } catch (e) {
                 commit('setError', e) // комит позволяет изменять state в store

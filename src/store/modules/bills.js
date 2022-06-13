@@ -17,7 +17,6 @@ export default{
                 for (const [key, value] of Object.entries(rates)) {
                     billData[value.name] = calcs
                   }
-                console.log(billData)  
                 await firebase.database().ref(`/apartaments/${apartamentId}/${year}/calculation`).set(billData) 
                 await firebase.database().ref(`/apartaments/${apartamentId}/${year}/payment`).set(months) 
                 const bill = (await firebase.database().ref(`/apartaments/${apartamentId}/${year}/calculation`).once('value')).val()
@@ -76,6 +75,16 @@ export default{
                 commit('setError', e) 
                 throw e      
             }
-        }
+        },
+        async getBill({commit},pasno){
+            try{
+                const ApartamentId = (await firebase.database().ref(`/tenant/${pasno}/apartament`).once('value')).val()  
+                return ApartamentId
+            }
+            catch (e) {
+                commit('setError', e) 
+                throw e   
+            }
+        },
     }
 }

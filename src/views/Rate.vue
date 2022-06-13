@@ -71,7 +71,6 @@ data: () => ({
   },
   async mounted() {
     this.rates = await this.$store.dispatch('fetchRates')
-    console.log(this.rates)
     this.loading = false
   },
 };

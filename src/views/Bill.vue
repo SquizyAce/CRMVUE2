@@ -42,10 +42,8 @@
 </template>
 <script>
 import { required, minLength } from 'vuelidate/lib/validators'
-
+import messages from "@/tools/messages"
 export default {
-
-
   name: 'login',
   data: () => ({
     pasno: '',
@@ -64,7 +62,10 @@ export default {
     let pasno = this.pasno
     try{
     this.ApartamentId = await this.$store.dispatch('getBill', pasno)
-    this.$router.push(`/bill/${this.ApartamentId}`);
+    if (!this.ApartamentId){
+    this.$message(messages['apdexist'])}
+    else{
+    this.$router.push(`/bill/${this.ApartamentId}`)}
     } catch (e) {}
     }
   }

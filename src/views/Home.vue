@@ -135,7 +135,6 @@ export default {
   async mounted(){
        this.modal = M.Modal.init(document.querySelectorAll('.modal'))
        this.apartaments = await this.$store.dispatch('fetchApartaments')
-       console.log(this.apartaments)
        this.loading = false
    },
    beforeDestroy(){

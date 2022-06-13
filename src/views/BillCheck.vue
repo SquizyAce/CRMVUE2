@@ -33,7 +33,6 @@ export default {
     async mounted() {
         this.bill = await this.$store.dispatch('fetchCalculation', this.apartamentId)
         this.apprice = await this.$store.dispatch('fetchApprice', this.apartamentId)
-        console.log(this.month)
     }
 }
 </script>

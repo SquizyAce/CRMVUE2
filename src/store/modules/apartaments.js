@@ -94,8 +94,13 @@ export default{
                 throw e
             }
         },
-        async deleteApartament({ commit}, apartamentID) {
+        async deleteApartament({dispatch, commit}, apartamentID) {
             try {
+                const tenant = (await firebase.database().ref(`/tenant/`).once('value')).val() || {}
+                for (const [key, value] of Object.entries(tenant)) {
+                        console.log(value.apartament)
+                        if (value.apartament == apartamentID) {await firebase.database().ref(`/tenant/${value.pasno}/apartament`).set('')}
+                    }
                 await firebase.database().ref(`/apartaments/${apartamentID}`).remove()
             } catch (e) {
                 commit('setError', e)
