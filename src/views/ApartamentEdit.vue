@@ -63,6 +63,9 @@
 <script>
 import { required, numeric } from 'vuelidate/lib/validators';
 export default {
+  metaInfo: {
+    title: "Редактирования квартиры"
+  },
   data: () => ({
       apartamentId: null,
       apartamentInfo: [],

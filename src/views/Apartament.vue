@@ -102,6 +102,9 @@
 <script>
 import messages from "@/tools/messages"
 export default {
+  metaInfo: {
+    title: "Квартира" 
+  },
     data: () => ({ 
       year: {
         next: null,

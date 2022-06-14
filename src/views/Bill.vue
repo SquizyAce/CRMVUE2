@@ -44,6 +44,9 @@
 import { required, minLength } from 'vuelidate/lib/validators'
 import messages from "@/tools/messages"
 export default {
+  metaInfo: {
+    title: "Просмотр счёта"
+  },
   name: 'login',
   data: () => ({
     pasno: '',

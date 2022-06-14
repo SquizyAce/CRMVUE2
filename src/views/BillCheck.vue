@@ -17,6 +17,9 @@
 <script>
 import dateFilter from '@/filters/date.filter'
 export default {
+  metaInfo: {
+    title: "Счёт"
+  },
     data: () => ({
         today: dateFilter(new Date, 'today'),
         month: parseInt(dateFilter(new Date, 'fetchMonth')) - 1,

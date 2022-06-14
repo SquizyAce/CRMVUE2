@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import Vuelidate from 'vuelidate'
+import VueMeta from 'vue-meta'
 import VueCompositionAPI from '@vue/composition-api'
 import './registerServiceWorker'
 import router from './router'
@@ -17,6 +18,7 @@ import 'firebase/database'
 
 Vue.config.productionTip = false
 Vue.use(Vuelidate)
+Vue.use(VueMeta)
 Vue.use(Crypto)
 Vue.use(VueCompositionAPI)
 Vue.use(messagePlugin)

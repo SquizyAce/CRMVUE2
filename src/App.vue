@@ -11,6 +11,9 @@
 import EmptyLayout from '@/layouts/EmptyLayout' // импорт слоёв для свойства
 import MainLayout from '@/layouts/MainLayout'
 export default {
+  metaInfo: {
+    title: "Загрузка"
+  },
   computed: { // объект
     layout() { // свойство 
       return (this.$route.meta.layout || 'empty') + '-layout' // возврат необходимого слоя для страницы из меты в роуте или при отсутсвие данных в мете возврат слоя empty 

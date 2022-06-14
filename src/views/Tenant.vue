@@ -128,6 +128,9 @@ import M from 'materialize-css'
 import { required, email, minLength, maxLength, numeric } from 'vuelidate/lib/validators'
 import dateFilter from '@/filters/date.filter'
 export default {
+  metaInfo: {
+    title: "Квартиранты"
+  },
   name: 'tenant',
   data: () => ({
     selectedUser: {},

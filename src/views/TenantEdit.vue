@@ -80,6 +80,9 @@
 <script>
 import { required, email, minLength, maxLength, numeric } from 'vuelidate/lib/validators';
 export default {
+  metaInfo: {
+    title: "Редактирования квартиранта "
+  },
   data: () => ({
       userId: null,
       userInfo: [],

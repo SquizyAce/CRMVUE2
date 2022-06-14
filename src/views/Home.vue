@@ -98,6 +98,9 @@ import { required, numeric } from 'vuelidate/lib/validators'
 export default {
   name: 'home',
   name: 'tenant',
+  metaInfo: {
+    title: "Квартиры"
+  },
   data: () => ({
        selectedAp: {},
        apartaments: [],

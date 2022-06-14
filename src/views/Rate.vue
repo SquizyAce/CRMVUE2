@@ -48,6 +48,9 @@
 
 <script>
 export default {
+  metaInfo: {
+    title: "Тарифы"
+  },
   name: 'rate',
 data: () => ({
        rates: [],
