@@ -21,7 +21,7 @@ export default{
                     alert('Такой паспорт уже зарегистрирован');
                     return;
                     case(2):
-                    alert('Такой email уже зарегистрирован');
+                    alert('Такой телефон уже зарегистрирован');
                     return;
                   }
                 const id = password
@@ -58,7 +58,7 @@ export default{
                     alert('Такой паспорт уже зарегистрирован');
                     return;
                     case(2):
-                    alert('Такой email уже зарегистрирован');
+                    alert('Такой телефон уже зарегистрирован');
                     return;
                   }
                 await firebase.database().ref(`/tenant/${userId}`).remove()

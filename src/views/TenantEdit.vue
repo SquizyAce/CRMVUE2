@@ -38,24 +38,26 @@
                 >Номер паспорта должен состоять из цифр</small>
                 
             </div>
-            <label for="email">Email</label>
+            <label for="email">Номер телефона</label>
             <div class="form-group">
               <input
                 id="email"
                 type="text"
                 v-model.trim="userInfo.email"
-                :class="{invalid: ($v.userInfo.email.$dirty && !$v.userInfo.email.required) /* email пуст */ || ($v.userInfo.email.$dirty && !$v.userInfo.email.email) /* несоответсвует формату email */ }"
+                :class="{invalid: ($v.userInfo.email.$dirty && !$v.userInfo.email.required) /* email пуст */ || ($v.userInfo.email.$dirty && !$v.userInfo.email.minLength) /* несоответсвует формату email */ || ($v.userInfo.email.$dirty && !$v.userInfo.email.maxLength) || ($v.userInfo.email.$dirty && !$v.userInfo.email.numeric)   }"
                  >
-                 <small 
-                 class="helper-text invalid"
-                 v-if="$v.userInfo.email.$dirty && !$v.userInfo.email.required"
-                 >Поле email не должно быть пустым
-                 </small>
-                 <small 
-                 class="helper-text invalid"
-                 v-else-if="$v.userInfo.email.$dirty && !$v.userInfo.email.email"
-                 >Введите корректный Email
-                 </small>
+                 <small class="helper-text invalid"
+                v-if="$v.userInfo.email.$dirty && !$v.userInfo.email.required"
+                >Введите номер телефона</small>
+                <small class="helper-text invalid"
+                v-else-if="$v.userInfo.email.$dirty && !$v.userInfo.email.minLength"
+                >Номер телефона должен состоять из {{$v.userInfo.email.$params.minLength.min}} символов. Сейчас он {{userInfo.email.length}}</small>
+                <small class="helper-text invalid"
+                v-else-if="$v.userInfo.email.$dirty && !$v.userInfo.email.maxLength"
+                >Номер телефона должен состоять из {{$v.userInfo.email.$params.minLength.min}} символов. Сейчас он {{userInfo.email.length}}</small>
+                <small class="helper-text invalid"
+                v-else-if="$v.userInfo.email.$dirty && !$v.userInfo.email.numeric"
+                >Номер телефона должен состоять из цифр</small>
             </div>
             <label>Квартира</label>
             <select class="browser-default" v-model="currentApartamentId">
@@ -91,7 +93,7 @@ export default {
   }),
   validations: {
     userInfo: {
-    email: {email,required},
+    email: {minLength: minLength(11), maxLength: maxLength(11), required, numeric},
     pasno: {minLength: minLength(10), maxLength: maxLength(10), required, numeric},
     name: {required},
     }

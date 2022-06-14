@@ -24,7 +24,7 @@
           <td><input 
                   @blur="count(0)"
                   id="price" type="text" class="black-text" autocomplete="off"
-                  v-model.trim="service[0].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[0].total.toFixed(2)}}<i class="fa fa-rub"></i></label>
+                  v-model.trim="service[0].value.total" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[0].total.toFixed(2)}}<i class="fa fa-rub"></i></label>
           </td>
           <td><input
                   @blur="count(1)"
@@ -84,7 +84,7 @@
         </tr>
         <tr style="font-weight: bold">
           <td>Итоговая сумма с квартплатой</td>
-          <td v-for="(payment, index) in payments" :key="payment.id">{{payment.toFixed(2)}}<i class="fa fa-rub"></i> <br><a @click.prevent="report(index)" style="cursor: pointer; font-weight: normal">Отчёт</a></td>
+          <td v-for="(payment, index) in payments" :key="payment.id">{{payment.toFixed()}}<i class="fa fa-rub"></i> <br><a @click.prevent="report(index)" style="cursor: pointer; font-weight: normal">Отчёт</a></td>
           <td></td>
         </tr>
       </tbody>
@@ -174,11 +174,13 @@ export default {
               this.bill[billForCount[service].id][serviceId].value = parseFloat((billForCount[2][serviceId].value - this.lastYearBill[2]) + (billForCount[6][serviceId].value - this.lastYearBill[6]))
               this.payments[serviceId] = parseFloat(this.payments[serviceId] + ((billForCount[2][serviceId].value - this.lastYearBill[2]) + (billForCount[6][serviceId].value - this.lastYearBill[6])) * ratesForCount[service].price)
               this.bill[billForCount[service].id][serviceId].total = parseFloat(((billForCount[2][serviceId].value - this.lastYearBill[2]) + (billForCount[6][serviceId].value - this.lastYearBill[6])) * ratesForCount[service].price)
+              this.bill[billForCount[service].id][serviceId].value.toFixed(2)
             } else 
             {
               this.bill[billForCount[service].id][serviceId].value = parseFloat((billForCount[2][serviceId].value - billForCount[2][serviceId - 1].value) + (billForCount[6][serviceId].value - billForCount[6][serviceId - 1].value))
               this.payments[serviceId] = parseFloat(this.payments[serviceId] + ((billForCount[2][serviceId].value - billForCount[2][serviceId - 1].value) + (billForCount[6][serviceId].value - billForCount[6][serviceId - 1].value)) * ratesForCount[service].price)
               this.bill[billForCount[service].id][serviceId].total = parseFloat(((billForCount[2][serviceId].value - billForCount[2][serviceId - 1].value) + (billForCount[6][serviceId].value - billForCount[6][serviceId - 1].value)) * ratesForCount[service].price)
+              this.bill[billForCount[service].id][serviceId].value = this.bill[billForCount[service].id][serviceId].value.toFixed(2)
             }
               break;    
           }
@@ -202,10 +204,10 @@ export default {
         let report = ''
         for (let bill in billForCount)
         {
-          let a = billForCount[bill].id + ': ' + billForCount[bill][id].total + " руб.\n"
+          let a = billForCount[bill].id + ': ' + billForCount[bill][id].total.toFixed(2) + " руб.\n"
           report = report + a
         }
-        report = report + "Квартплата: " + this.apprice + " руб.\nИтоговая сумма: " + this.payments[id] +" руб."
+        report = report + "Квартплата: " + this.apprice + " руб.\nИтоговая сумма: " + this.payments[id].toFixed() +" руб."
         var copyhelper = document.createElement("textarea") // обход execCommand
         copyhelper.className = 'copyhelper'
         document.body.appendChild(copyhelper)

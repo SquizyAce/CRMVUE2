@@ -11,7 +11,7 @@
           <tr>
               <th>Имя</th>
               <th>Номер паспорта</th>
-              <th>Email</th>
+              <th>Телефон</th>
               <th>Дата регистрации</th>
               <th>Квартира</th>
           </tr>
@@ -81,19 +81,21 @@
           id="email"
           type="text"
           v-model.trim="email"
-          :class="{invalid: ($v.email.$dirty && !$v.email.required) /* email пуст */ || ($v.email.$dirty && !$v.email.email) /* несоответсвует формату email */ }"
+          :class="{invalid: ($v.email.$dirty && !$v.email.required) || ($v.email.$dirty && !$v.email.minLength) || ($v.email.$dirty && !$v.email.maxLength || ($v.email.$dirty && !$v.email.numeric))} "
       >
-      <label for="email">Email</label>
-      <small 
-      class="helper-text invalid"
+      <label for="email">Номер телефона</label>
+      <small class="helper-text invalid"
       v-if="$v.email.$dirty && !$v.email.required"
-      >Поле email не должно быть пустым
-      </small>
-      <small 
-      class="helper-text invalid"
-      v-else-if="$v.email.$dirty && !$v.email.email"
-      >Введите корректный Email
-      </small>
+      >Введите номер телефона</small>
+      <small class="helper-text invalid"
+      v-else-if="$v.email.$dirty && !$v.email.minLength"
+      >Номер телефона должен состоять из {{$v.email.$params.minLength.min}} цифр. Сейчас он {{email.length}}</small>
+      <small class="helper-text invalid"
+      v-else-if="$v.email.$dirty && !$v.email.maxLength"
+      >Номер телефона должен состоять из {{$v.email.$params.minLength.min}} цифр. Сейчас он {{email.length}}</small>
+      <small class="helper-text invalid"
+      v-else-if="$v.email.$dirty && !$v.email.numeric"
+      >Номер телефона должен состоять из цифр</small>
     </div>
 
       <label>Квартира</label>
@@ -125,7 +127,7 @@
 
 <script>
 import M from 'materialize-css'
-import { required, email, minLength, maxLength, numeric } from 'vuelidate/lib/validators'
+import { required, minLength, maxLength, numeric } from 'vuelidate/lib/validators'
 import dateFilter from '@/filters/date.filter'
 export default {
   metaInfo: {
@@ -144,7 +146,7 @@ export default {
     modal: null,
   }),
   validations: {
-    email: {email,required},
+    email: {minLength: minLength(11), maxLength: maxLength(11), required, numeric},
     password: {minLength: minLength(10), maxLength: maxLength(10), required, numeric},
     name: {required},
   },
