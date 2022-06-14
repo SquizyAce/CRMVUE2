@@ -24,67 +24,67 @@
           <td><input 
                   @blur="count(0)"
                   id="price" type="text" class="black-text" autocomplete="off"
-                  v-model.trim="service[0].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[0].total.toFixed(2)}}&#8381;</label>
+                  v-model.trim="service[0].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[0].total.toFixed(2)}}<i class="fa fa-rub"></i></label>
           </td>
           <td><input
                   @blur="count(1)"
                   id="price" type="text" class="black-text" autocomplete="off"
-                  v-model.trim="service[1].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[1].total.toFixed(2)}}&#8381;</label>
+                  v-model.trim="service[1].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[1].total.toFixed(2)}}<i class="fa fa-rub"></i></label>
           </td>
           <td><input
                   @blur="count(2)"
                   id="price" type="text" class="black-text" autocomplete="off"
-                  v-model.trim="service[2].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[2].total.toFixed(2)}}&#8381;</label>
+                  v-model.trim="service[2].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[2].total.toFixed(2)}}<i class="fa fa-rub"></i></label>
           </td>
           <td><input
                   @blur="count(3)"
                   id="price" type="text" class="black-text" autocomplete="off"
-                  v-model.trim="service[3].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[3].total.toFixed(2)}}&#8381;</label>
+                  v-model.trim="service[3].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[3].total.toFixed(2)}}<i class="fa fa-rub"></i></label>
          </td>
           <td><input
                   @blur="count(4)"
                   id="price" type="text" class="black-text" autocomplete="off"
-                  v-model.trim="service[4].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[4].total.toFixed(2)}}&#8381;</label>
+                  v-model.trim="service[4].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[4].total.toFixed(2)}}<i class="fa fa-rub"></i></label>
           </td>
           <td><input
                   @blur="count(5)"
                   id="price" type="text" class="black-text" autocomplete="off"
-                  v-model.trim="service[5].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[5].total.toFixed(2)}}&#8381;</label>
+                  v-model.trim="service[5].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[5].total.toFixed(2)}}<i class="fa fa-rub"></i></label>
           </td>
           <td><input
                   @blur="count(6)"
                   id="price" type="text" class="black-text" autocomplete="off"
-                  v-model.trim="service[6].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[6].total.toFixed(2)}}&#8381;</label>
+                  v-model.trim="service[6].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[6].total.toFixed(2)}}<i class="fa fa-rub"></i></label>
          </td>
           <td><input
                   @blur="count(7)"
                   id="price" type="text" class="black-text" autocomplete="off"
-                  v-model.trim="service[7].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[7].total.toFixed(2)}}&#8381;</label>
+                  v-model.trim="service[7].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[7].total.toFixed(2)}}<i class="fa fa-rub"></i></label>
           </td>
           <td><input
                   @blur="count(8)"
                   id="price" type="text" class="black-text" autocomplete="off"
-                  v-model.trim="service[8].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[8].total.toFixed(2)}}&#8381;</label>
+                  v-model.trim="service[8].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[8].total.toFixed(2)}}<i class="fa fa-rub"></i></label>
           </td>
           <td><input
                   @blur="count(9)"
                   id="price" type="text" class="black-text" autocomplete="off"
-                  v-model.trim="service[9].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[9].total.toFixed(2)}}&#8381;</label>
+                  v-model.trim="service[9].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[9].total.toFixed(2)}}<i class="fa fa-rub"></i></label>
           </td>
           <td><input
                   @blur="count(10)"
                   id="price" type="text" class="black-text" autocomplete="off"
-                  v-model.trim="service[10].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[10].total.toFixed(2)}}&#8381;</label>
+                  v-model.trim="service[10].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[10].total.toFixed(2)}}<i class="fa fa-rub"></i></label>
          </td>
           <td><input
                   @blur="count(11)"
                   id="price" type="text" class="black-text" autocomplete="off"
-                  v-model.trim="service[11].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[11].total.toFixed(2)}}&#8381;</label>
+                  v-model.trim="service[11].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[11].total.toFixed(2)}}<i class="fa fa-rub"></i></label>
          </td>
         </tr>
         <tr style="font-weight: bold">
           <td>Итоговая сумма с квартплатой</td>
-          <td v-for="(payment, index) in payments" :key="payment.id">{{payment.toFixed(2)}}&#8381; <br><a @click.prevent="report(index)" style="cursor: pointer; font-weight: normal">Отчёт</a></td>
+          <td v-for="(payment, index) in payments" :key="payment.id">{{payment.toFixed(2)}}<i class="fa fa-rub"></i> <br><a @click.prevent="report(index)" style="cursor: pointer; font-weight: normal">Отчёт</a></td>
           <td></td>
         </tr>
       </tbody>
