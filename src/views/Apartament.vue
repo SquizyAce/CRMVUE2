@@ -24,7 +24,7 @@
           <td><input 
                   @blur="count(0)"
                   id="price" type="text" class="black-text" autocomplete="off"
-                  v-model.trim="service[0].value.total" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[0].total.toFixed(2)}}<i class="fa fa-rub"></i></label>
+                  v-model.trim="service[0].value" style="margin-bottom: 0px;border-bottom-width: 0px;margin-top: 7.5px; "> <label>{{service[0].total.toFixed(2)}}<i class="fa fa-rub"></i></label>
           </td>
           <td><input
                   @blur="count(1)"
