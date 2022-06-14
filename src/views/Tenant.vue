@@ -174,7 +174,6 @@ export default {
       } catch(e){}
     },
     async deleteUser(userId) {
-      console.log(userId)
       await this.$store.dispatch('deleteTenant', userId)
       this.$router.go();
     },
