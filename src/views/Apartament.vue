@@ -2,6 +2,8 @@
 <Loader v-if="loading"/>
 <div v-else class="container">
   <div class="row">
+    <div class="center"><h6 style="margin-top: 0px;">{{title}}</h6></div>
+    
     <div>
    <ul class="pagination center">
     <li class="disabled"><a href="#!" @click.prevent="refresh()"><router-link :to="{ path: `/home/${apartamentId}/${year.prev}`}"><i class="material-icons">chevron_left</i></router-link></a></li>
@@ -118,7 +120,8 @@ export default {
       payments: [],
       loading: true,
       months: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
-      apprice: 0
+      apprice: 0,
+      title: ''
     }),
     created(){
       this.year.today = Number(this.$route.params.year);
@@ -131,6 +134,7 @@ export default {
         year: this.year.today,
         apartamentId: this.apartamentId
       }
+      this.title = await this.$store.dispatch('fetchTitle', this.apartamentId)
       this.apprice = await this.$store.dispatch('fetchApprice', this.apartamentId)
       this.bill = await this.$store.dispatch('fetchBill', formData)
       this.lastYearBill = await this.$store.dispatch('lastBill', formData)

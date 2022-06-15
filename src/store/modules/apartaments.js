@@ -47,9 +47,16 @@ export default{
                 commit('setError', e)
             }
         },
+        async fetchTitle({commit}, apartamentId) {
+            try {
+                const Apartament = (await firebase.database().ref(`/apartaments/${apartamentId}/info/name`).once('value')).val() || {}
+                return Apartament
+            } catch (e) {
+                commit('setError', e)
+            }
+        },
         async editApartament ({commit}, {adr, apprice, name, apartamentId}) {
             try{
-                console.log(adr,apprice,name)
                 await firebase.database().ref(`/apartaments/${apartamentId}/info`).set({
                     adr: adr,
                     apprice: apprice,

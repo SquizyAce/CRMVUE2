@@ -2,9 +2,9 @@
  <div class="card auth-card"> 
     <div class="card-content">
     <span class="card-title">Квартплата за {{this.today}}</span> 
-    <p v-for="(elem, index) in bill.calculation" :key="elem.id">{{index}}: {{bill.calculation[index][month].total}} рублей.</p>
+    <p v-for="(elem, index) in bill.calculation" :key="elem.id">{{index}}: {{bill.calculation[index][month].total.toFixed(2)}} рублей.</p>
     <p>Квартплата: {{apprice}} рублей.</p>
-    <p>Итоговая сумма: {{bill.payment[month]}} рублей.</p>
+    <p>Итоговая сумма: {{bill.payment[month].toFixed()}} рублей.</p>
   </div>
          
   <div class="card-action">

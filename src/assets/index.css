@@ -19,6 +19,13 @@
 .app-page{
     padding:2rem}
 
+.app-page.full{
+padding-top: 0;
+padding-left: 2rem;
+padding-right: 2rem;
+padding-bottom: 2rem;
+}
+
 .app-main-layout{
     position:relative;min-height:100vh}
 
